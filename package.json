@@ -1,0 +1,17 @@
+{
+    "name": "server",
+    "description": "Node.js Session",
+    "author": "Cloud381 Instructor",
+    "version": "0.0.1",
+    "dependencies": {
+        "express": "*",
+        "ejs": "*",
+        "body-parser": "*",
+        "cookie-session": "*",
+        "mongodb": "6.9.0"
+    },
+    "engine": "node >= 12.0.0",
+    "scripts": {
+        "start": "node server"
+    }
+}
