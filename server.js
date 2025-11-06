@@ -16,6 +16,7 @@ const Admins = new Array(
 	{name: 'admin', password: 'admin'},
 	{name: 'mod', password: 'mod'}
 );
+var registermode = false;
 
 app.set('view engine','ejs');
 
@@ -31,7 +32,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req,res) => {
 	console.log(req.session);
 	if (!req.session.authenticated) {    // user not logged in!
-		res.redirect('/login');
+		if (registermode) {
+			res.redirect('/register');
+		} else {
+			res.redirect('/login');
+		}
 	} else if (req.session.role == 'Teacher'){
 		res.status(200).render('teacher',{name:req.session.username, role: req.session.role});
 	} else {
@@ -44,6 +49,10 @@ app.get('/login', (req,res) => {
 });
 
 app.post('/login', (req,res) => {
+if (registermode) {
+	registermode = false;
+	res.redirect('/');
+} else {
 	users.forEach((user) => {
 		if (user.name == req.body.name && user.password == req.body.password) {
 			// correct user name + password
@@ -63,11 +72,21 @@ app.post('/login', (req,res) => {
 	});
 	
 	res.redirect('/');
+}
 });
 
 app.get('/logout', (req,res) => {
 	req.session = null;   // clear cookie-session
 	res.redirect('/');
+});
+
+app.get('/register', (req, res) => {
+    registermode = true;
+    res.status(200).render('register', {});
+});
+
+app.post('/register', async (req, res) => {	// place insert mongodb here 
+	res.redirect('/register');
 });
 
 app.listen(process.env.PORT || 8099);
