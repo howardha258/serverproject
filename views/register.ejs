@@ -1,17 +1,41 @@
 <html>
 
 <body>
-	<p>Student Attendance</p>
-	<ol>
-		<li>guest (password: guest)</li>
-		<li>developer (password: developer)</li>
-	</ol>
-	<hr>
-	<form action="/register" method="post">
-		Username: <input type="text" name="name"><br>
-		Password: <input type="password" name="password"><br>
-		<input type="submit" value="Register">
-	</form>
+
+<p>Student Registration</p>
+
+<ol>
+    <li>guest (password: guest)</li>
+    <li>developer (password: developer)</li>
+</ol>
+
+<hr>
+
+<form action="/register" method="post">
+    Name: <input type="text" name="fname"><br>
+    Username: <input type="text" name="name"><br>
+    Password: <input type="password" name="password"><br>
+    Gender: <br>
+    <input type="radio" id="male" name="gender" value="Male">
+    <label for="male">Male</label><br>
+    <input type="radio" id="female" name="gender" value="Female">
+    <label for="female">Female</label><br>
+    Role: <br>
+    <input type="radio" id="student" name="role" value="Student">
+    <label for="student">Student</label><br>
+    <input type="radio" id="teacher" name="role" value="Teacher">
+    <label for="teacher">Teacher</label><br>
+    <input type="submit" value="Register">
+</form>
+<form action="/backtologin" method="post">
+		<input type="submit" value="Back">
+</form>
+
+<div style="color:red;">
+    <%= errorMessage %> 
+</div>
+
 </body>
 
 </html>
+
