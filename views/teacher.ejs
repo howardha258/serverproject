@@ -1,8 +1,17 @@
 <html>
-   <body>
-      <H1>Hello, <%= name %></H1>
-      <H2>Here are the list of students and their attendance!</H2>
-      <br>
-      <a href='/logout'>Logout</a>
-   </body>
+<body>
+    <h1>Hello, <%= name %></h1>
+    <h2>Here are the list of students and their attendance!</h2>
+    <ul>
+        <% students.forEach(student => { %>
+            <li>
+                <a href="/studentdata/<%= student.username %>">
+                    <%= student.username %> : <%= student.studname %>
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+    <br>
+    <a href='/logout'>Logout</a>
+</body>
 </html>
