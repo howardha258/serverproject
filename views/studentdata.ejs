@@ -1,0 +1,33 @@
+<html>
+<head>
+    <style>
+        .male {
+            color: blue;
+        }
+        .female {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Data for <%= student.studname %></h1>
+    
+    <p>Username: <%= student.username %></p>
+    <p>Course ID: <%= student.courseID %></p>
+    <form action="/update-course/<%= student.username %>" method="post">
+        <label for="courseID">Change Course ID:</label>
+        <input type="text" id="courseID" name="courseID" value="<%= student.courseID %>"> 
+        <button type="submit">Update Course</button>
+    </form>
+    <p>
+        Gender: 
+        <span class="<%= student.gender === 'M' ? 'male' : 'female' %>">
+            <%= student.gender %>
+        </span>
+    </p>
+    <p>Student Name: <%= student.studname %></p>
+    
+    <br>
+    <a href="/"><button>Back</button></a> 
+</body>
+</html>
